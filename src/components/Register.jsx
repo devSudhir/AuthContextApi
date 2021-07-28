@@ -1,4 +1,4 @@
-export function Register() {
+export function Register({ setDisplayRegisterForm }) {
   const handleRegister = (e) => {
     e.preventDefault();
     fetch("https://reqres.in/api/register", {
@@ -7,11 +7,13 @@ export function Register() {
       body: JSON.stringify({
         email: e.target.email.value,
         password: e.target.password.value
-      })
+      }),
+      redirect: "follow"
     })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+        setDisplayRegisterForm(false);
       });
   };
   return (
